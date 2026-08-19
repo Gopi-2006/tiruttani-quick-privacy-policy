@@ -1,0 +1,25 @@
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+
+# Service account and admin credentials
+service-account*.json
+firebase-adminsdk*.json
+*service_account*.json
+credentials*.json
+client_secret*.json
+
+# Keys and Keystores
+*.keystore
+*.jks
+*.p8
+*.p12
+*.pem
+*.key
+
+# OS / Editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

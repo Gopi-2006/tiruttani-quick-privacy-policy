@@ -7,7 +7,7 @@
  */
 
 const FIREBASE_CONFIG = {
-  apiKey: "AIzaSyC3NfrW8Ozq9gGRHEMp3jOWbTMCU5dcMck",
+  apiKey: (typeof window !== 'undefined' && (window.__TQ_FIREBASE_API_KEY__ || window.FIREBASE_API_KEY)) || "",
   authDomain: "blinkit-grocery-c3f5d.firebaseapp.com",
   projectId: "blinkit-grocery-c3f5d",
   storageBucket: "blinkit-grocery-c3f5d.firebasestorage.app",
@@ -31,15 +31,25 @@ function initFirebase() {
   if (typeof firebase !== 'undefined') {
     try {
       if (!firebase.apps.length) {
-        firebase.initializeApp(FIREBASE_CONFIG);
+        const config = Object.assign({}, FIREBASE_CONFIG);
+        if (!config.apiKey && typeof window !== 'undefined' && window.__TQ_FIREBASE_API_KEY__) {
+          config.apiKey = window.__TQ_FIREBASE_API_KEY__;
+        }
+        if (config.apiKey) {
+          firebase.initializeApp(config);
+          window.db = firebase.firestore();
+          window.auth = firebase.auth();
+          window.TiruttaniQuickState.firebaseInitialized = true;
+          console.log("🔥 Tiruttani Quick Firebase initialized successfully.");
+          listenToShopSettings();
+        } else {
+          console.log("ℹ️ Firebase Web API key pending runtime configuration; continuing in standard storefront mode.");
+          updateGlobalDeliveryBadge();
+        }
       }
-      window.db = firebase.firestore();
-      window.auth = firebase.auth();
-      window.TiruttaniQuickState.firebaseInitialized = true;
-      console.log("🔥 Tiruttani Quick Firebase initialized successfully.");
-      listenToShopSettings();
     } catch (err) {
       console.warn("Firebase initialization warning:", err);
+      updateGlobalDeliveryBadge();
     }
   } else {
     console.log("Firebase SDK script loading or deferred.");
