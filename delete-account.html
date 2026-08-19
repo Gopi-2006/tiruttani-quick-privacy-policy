@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Request Account Deletion for Tiruttani Quick. Securely submit your account deletion request.">
+  <title>Delete Account — Tiruttani Quick</title>
+  
+  <link rel="canonical" href="https://ranuka-stores.neocities.org/delete-account.html">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  
+  <style>
+    .form-container {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      max-width: 650px;
+      margin: 40px auto;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .warning-box {
+      background: var(--danger-bg);
+      border: 1px solid #FECACA;
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .warning-title {
+      color: #991B1B;
+      font-family: var(--font-title);
+      font-size: 16px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    
+    .warning-list {
+      list-style: none;
+    }
+    
+    .warning-item {
+      font-size: 13.5px;
+      color: #991B1B;
+      margin-bottom: 8px;
+      padding-left: 20px;
+      position: relative;
+    }
+    
+    .warning-item::before {
+      content: "•";
+      position: absolute;
+      left: 6px;
+      color: #991B1B;
+      font-weight: bold;
+    }
+    
+    .checkbox-container {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      cursor: pointer;
+      user-select: none;
+      padding: 14px;
+      background: var(--bg-body);
+      border-radius: var(--radius-md);
+      border: 1px dashed var(--border-color);
+    }
+    
+    .checkbox-container input {
+      margin-top: 4px;
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+    }
+    
+    .checkbox-label {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+    
+    .success-card {
+      display: none;
+      text-align: center;
+    }
+    
+    .success-icon {
+      width: 72px;
+      height: 72px;
+      background: var(--success-bg);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--success);
+      margin: 0 auto 24px;
+      font-size: 36px;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Sticky Header Navigation -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo-link">
+        <div class="brand-logo-img">TQ</div>
+        <div class="brand-title">
+          TIRUTTANI <span>QUICK</span>
+          <span class="brand-subtitle">Local Grocery Partner</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="shop.html" class="nav-link">Shop</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <div class="status-pill available status-pill-dynamic">
+          <span class="status-dot"></span> 🟢 Delivery Available in Tiruttani
+        </div>
+        <a href="https://play.google.com/store/apps/details?id=com.thiruttaniquick.customer" target="_blank" rel="noopener" class="btn btn-primary btn-sm btn-download">
+          Download App
+        </a>
+        <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-content">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="shop.html" class="mobile-nav-link">Shop</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About Us</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact Us</a></li>
+        <li><a href="privacy-policy.html" class="mobile-nav-link">Privacy Policy</a></li>
+        <li><a href="terms.html" class="mobile-nav-link">Terms & Conditions</a></li>
+        <li><a href="refund-policy.html" class="mobile-nav-link">Refund Policy</a></li>
+        <li><a href="delivery-policy.html" class="mobile-nav-link">Delivery Policy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <main class="container">
+    
+    <div class="form-container">
+      
+      <!-- Deletion Request Form -->
+      <form id="deletionForm">
+        <h1 style="font-size: 32px; margin-bottom: 8px;">Delete Account Request</h1>
+        <p style="color: var(--text-muted); font-size: 14.5px; margin-bottom: 24px;">
+          Please fill out the form below to request the deletion of your Tiruttani Quick account and personal data.
+        </p>
+
+        <!-- Warning Banner -->
+        <div class="warning-box">
+          <div class="warning-title">
+            <span>⚠️</span> Before you proceed
+          </div>
+          <ul class="warning-list">
+            <li class="warning-item">This action will permanently delete your account, saved addresses, and profile details.</li>
+            <li class="warning-item">Your complete order history and receipts will be removed from our database.</li>
+            <li class="warning-item">This request is irreversible once processed.</li>
+          </ul>
+        </div>
+
+        <!-- Input: Full Name -->
+        <div class="form-group">
+          <label for="fullName" class="form-label">Full Name *</label>
+          <input type="text" id="fullName" class="form-control" placeholder="Enter your full name" required>
+        </div>
+
+        <!-- Input: Email -->
+        <div class="form-group">
+          <label for="email" class="form-label">Email Address *</label>
+          <input type="email" id="email" class="form-control" placeholder="name@example.com" required>
+        </div>
+
+        <!-- Input: Phone Number -->
+        <div class="form-group">
+          <label for="phone" class="form-label">Registered Mobile Number *</label>
+          <input type="tel" id="phone" class="form-control" placeholder="e.g. +91 98765 43210" required>
+        </div>
+
+        <!-- Input: Reason -->
+        <div class="form-group">
+          <label for="reason" class="form-label">Reason for Deletion *</label>
+          <select id="reason" class="form-control" required>
+            <option value="" disabled selected>Select a reason...</option>
+            <option value="no-longer-use">I no longer use this app</option>
+            <option value="duplicate-account">I have a duplicate account</option>
+            <option value="privacy-concerns">Privacy / data concerns</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <!-- Input: Confirmation Checkbox -->
+        <div class="form-group" style="margin-top: 30px;">
+          <label class="checkbox-container">
+            <input type="checkbox" id="confirmCheckbox" required>
+            <span class="checkbox-label">
+              I understand that account deletion is permanent and all my data, including order history and saved addresses, will be permanently erased.
+            </span>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary" id="submitBtn" disabled style="width: 100%; margin-top: 10px; padding: 16px;">
+          Submit Deletion Request
+        </button>
+      </form>
+
+      <!-- Success Message -->
+      <div class="success-card" id="successState">
+        <div class="success-icon">✓</div>
+        <h2 style="font-size: 24px; margin-bottom: 12px;">Request Submitted</h2>
+        <p style="color: var(--text-muted); font-size: 15px; margin-bottom: 30px; line-height: 1.6;">
+          Your request to delete your Tiruttani Quick account has been successfully submitted. <br><br>
+          Our team will review and process your request within <strong>7 business days</strong>. A confirmation email will be sent to your registered address.
+        </p>
+        <a href="index.html" class="btn btn-primary" style="width: 100%;">
+          Return to Home Page
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">TIRUTTANI <span>QUICK</span></div>
+          <p class="footer-tagline">"Your Local Grocery Delivery Partner in Tiruttani"</p>
+        </div>
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="shop.html" class="footer-link">Shop</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Policies</h4>
+          <ul class="footer-links">
+            <li><a href="privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+            <li><a href="terms.html" class="footer-link">Terms & Conditions</a></li>
+            <li><a href="refund-policy.html" class="footer-link">Refund Policy</a></li>
+            <li><a href="delivery-policy.html" class="footer-link">Delivery Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Download App</h4>
+          <a href="https://play.google.com/store/apps/details?id=com.thiruttaniquick.customer" target="_blank" rel="noopener" class="store-btn">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3 20.5v-17l14 8.5-14 8.5zm1.5-14.8l10.2 6.3-10.2 6.2v-12.5z"/></svg>
+            <div class="store-btn-text">
+              <span>GET IT ON</span>
+              <strong>Google Play</strong>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 Tiruttani Quick. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('deletionForm');
+      const successState = document.getElementById('successState');
+      const confirmCheckbox = document.getElementById('confirmCheckbox');
+      const submitBtn = document.getElementById('submitBtn');
+
+      confirmCheckbox.addEventListener('change', () => {
+        submitBtn.disabled = !confirmCheckbox.checked;
+      });
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        submitBtn.disabled = true;
+        submitBtn.innerText = 'Submitting request...';
+        
+        setTimeout(() => {
+          form.style.display = 'none';
+          successState.style.display = 'block';
+        }, 1200);
+      });
+    });
+  </script>
+</body>
+</html>

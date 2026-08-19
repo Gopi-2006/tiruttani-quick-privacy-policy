@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Shop Groceries — Tiruttani Quick</title>
+  <meta name="title" content="Shop Groceries — Tiruttani Quick">
+  <meta name="description" content="Browse and shop everyday groceries, household essentials, milk, cooking oils, and daily needs online with Tiruttani Quick. Local delivery in Tiruttani.">
+  <link rel="canonical" href="https://ranuka-stores.neocities.org/shop.html">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛒</text></svg>">
+  
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/shop.css">
+</head>
+<body>
+
+  <!-- Sticky Header Navigation -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="brand-logo-link">
+        <div class="brand-logo-img">TQ</div>
+        <div class="brand-title">
+          TIRUTTANI <span>QUICK</span>
+          <span class="brand-subtitle">Local Grocery Partner</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="shop.html" class="nav-link active">Shop</a></li>
+          <li><a href="about.html" class="nav-link">About Us</a></li>
+          <li><a href="contact.html" class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+
+      <!-- Desktop Actions -->
+      <div class="header-actions">
+        <div class="status-pill available status-pill-dynamic">
+          <span class="status-dot"></span> 🟢 Delivery Available in Tiruttani
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="openCartDrawer()">
+          🛍️ Cart (<span class="cart-count-badge" style="display:inline-flex; width:18px; height:18px; font-size:10px;">0</span>)
+        </button>
+        <button class="mobile-toggle" id="mobileMenuToggle" aria-label="Toggle navigation menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobileDrawer">
+    <div class="mobile-drawer-content">
+      <ul class="mobile-nav-list">
+        <li><a href="index.html" class="mobile-nav-link">Home</a></li>
+        <li><a href="shop.html" class="mobile-nav-link active">Shop</a></li>
+        <li><a href="about.html" class="mobile-nav-link">About Us</a></li>
+        <li><a href="contact.html" class="mobile-nav-link">Contact Us</a></li>
+        <li><a href="privacy-policy.html" class="mobile-nav-link">Privacy Policy</a></li>
+        <li><a href="terms.html" class="mobile-nav-link">Terms & Conditions</a></li>
+        <li><a href="refund-policy.html" class="mobile-nav-link">Refund Policy</a></li>
+        <li><a href="delivery-policy.html" class="mobile-nav-link">Delivery Policy</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Shop Toolbar & Catalog Container -->
+  <main class="container section-padding" style="padding-top: 40px;">
+    
+    <!-- Title & Delivery Availability Banner -->
+    <div style="margin-bottom: 30px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <h1 style="font-size: 36px; margin-bottom: 6px;">Online Grocery Catalog</h1>
+        <p style="color: var(--text-muted); font-size: 15px;">Shop everyday essentials from local Tiruttani inventory.</p>
+      </div>
+      <div class="status-pill available status-pill-dynamic">
+        <span class="status-dot"></span> 🟢 Delivery Available in Tiruttani
+      </div>
+    </div>
+
+    <!-- Search & Category Toolbar -->
+    <div class="shop-toolbar">
+      <div class="search-box-wrapper">
+        <svg class="search-icon" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>
+        <input type="text" id="shopSearchInput" class="search-input" placeholder="Search groceries, atta, milk, oil, biscuits...">
+      </div>
+      
+      <!-- Category Filter Pills -->
+      <div class="category-pills" id="categoryPillsContainer">
+        <!-- Rendered via shop.js -->
+      </div>
+    </div>
+
+    <!-- Products Grid Container -->
+    <div class="products-grid" id="productsGrid">
+      <!-- Rendered via shop.js -->
+    </div>
+  </main>
+
+  <!-- Floating Cart Button -->
+  <button class="floating-cart-btn" onclick="openCartDrawer()" aria-label="View Cart">
+    <span>🛍️ View Cart</span>
+    <span class="cart-count-badge">0</span>
+  </button>
+
+  <!-- Cart Flyout Drawer Backdrop & Drawer -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay" onclick="closeCartDrawer()"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h3 class="cart-title">Your Grocery Cart</h3>
+      <button class="cart-close-btn" onclick="closeCartDrawer()" aria-label="Close Cart">&times;</button>
+    </div>
+
+    <div class="free-delivery-meter">
+      <div id="freeDeliveryText">Add <strong>₹500</strong> for FREE Delivery!</div>
+      <div class="free-delivery-bar">
+        <div class="free-delivery-progress" id="freeDeliveryProgress" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <div class="cart-body" id="cartDrawerBody">
+      <!-- Dynamic Cart Items rendered via shop.js -->
+    </div>
+
+    <div class="cart-footer">
+      <div id="checkoutNotice" class="checkout-unavailable-notice" style="display: none;">
+        🔴 Delivery currently unavailable in Tiruttani.
+      </div>
+      <div class="cart-summary-row">
+        <span>Item Subtotal</span>
+        <strong id="cartSubtotal">₹0</strong>
+      </div>
+      <div class="cart-summary-row">
+        <span>Delivery Charge</span>
+        <strong id="cartDeliveryFee">₹29</strong>
+      </div>
+      <div class="cart-summary-total">
+        <span>Grand Total</span>
+        <span id="cartGrandTotal">₹0</span>
+      </div>
+      <button class="btn btn-primary checkout-btn" id="checkoutBtn" onclick="proceedToCheckout()">
+        Proceed to Order
+      </button>
+    </div>
+  </aside>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="footer-logo">TIRUTTANI <span>QUICK</span></div>
+          <p class="footer-tagline">"Your Local Grocery Delivery Partner in Tiruttani"</p>
+        </div>
+        <div>
+          <h4 class="footer-title">Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html" class="footer-link">Home</a></li>
+            <li><a href="shop.html" class="footer-link">Shop</a></li>
+            <li><a href="about.html" class="footer-link">About Us</a></li>
+            <li><a href="contact.html" class="footer-link">Contact Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Policies</h4>
+          <ul class="footer-links">
+            <li><a href="privacy-policy.html" class="footer-link">Privacy Policy</a></li>
+            <li><a href="terms.html" class="footer-link">Terms & Conditions</a></li>
+            <li><a href="refund-policy.html" class="footer-link">Refund Policy</a></li>
+            <li><a href="delivery-policy.html" class="footer-link">Delivery Policy</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="footer-title">Download App</h4>
+          <a href="https://play.google.com/store/apps/details?id=com.thiruttaniquick.customer" target="_blank" rel="noopener" class="store-btn">
+            <svg viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M3 20.5v-17l14 8.5-14 8.5zm1.5-14.8l10.2 6.3-10.2 6.2v-12.5z"/></svg>
+            <div class="store-btn-text">
+              <span>GET IT ON</span>
+              <strong>Google Play</strong>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2026 Tiruttani Quick. All rights reserved.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Firebase & Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <script src="js/firebase-config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/shop.js"></script>
+</body>
+</html>
